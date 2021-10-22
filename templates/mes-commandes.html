@@ -1,0 +1,98 @@
+{% extends 'base-account.html'%}
+{% load static %}
+
+{% block title%} Mes Commandes {% endblock %}
+{% block body %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="stext-101 cl6 text-center card-header bg-dark text-light">
+                    TOTAL DEPENSES
+                </div>
+                <div class=" stext-101 cl6 text-center card-body">
+                    <span>{{grand_total_order}} XOF</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="col-lg-12">
+        {% if orders.count > 0 %}
+        <div class="table-responsive table--no-card m-b-40">
+            <table class="table table-borderless table-striped table-earning">
+                <thead>
+
+                    <tr>
+                        <th>Date</th>
+                        <th>Id Commande</th>
+                        <th class="text-right">Status</th>
+                        <th class="text-right">Téléphone</th>
+                        <th class="text-right">Total Payé</th>
+                        <th class="text-right"></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td>{{order.created_at}}</td>
+                        <td>{{order.order_number}}</td>
+
+                        {% if  order.status == 'Nouvelle' %}
+                        <td class="stext-101 cl6 text-center" style="color: crimson">{{order.status}}</td>
+                        {% endif %}
+                        {% if  order.status == 'Accepté' %}
+                        <td class="stext-101 cl6 text-center" style="color: #098f59">{{order.status}}</td>
+                        {% endif %}
+                        {% if  order.status == 'Rejeté' %}
+                        <td class="stext-101 cl6 text-center" style="color: #d60b22">{{order.status}}</td>
+                        {% endif %}
+                        {% if  order.status == 'En traitement' %}
+                        <td class="stext-101 cl6 text-center" style="color: #5502a3">{{order.status}}</td>
+                        {% endif %}
+                        {% if  order.status == 'Traité' %}
+                        <td class="stext-101 cl6 text-center" style="color: #098f59">{{order.status}}</td>
+                        {% endif %}
+                        {% if  order.status == 'En cours de livraison' %}
+                        <td class="stext-101 cl6 text-center" style="color: sandybrown">{{order.status}}</td>
+                        {% endif %}
+                        {% if  order.status == 'Terminé' %}
+                        <td class="stext-101 cl6 text-center" style="color: crimson">{{order.status}}</td>
+                        {% endif %}
+
+                        <td class="text-right">{{order.phone}}</td>
+                        <td class="text-right">{{order.order_total}} XOF</td>
+
+
+                        <td class="text-right">
+
+                            <div> <a href="{% url 'track' order.order_number %} " class="text. font-weight-bold text-uppercase cl2 bg8 bor13 hov-btn3 p-lr-10 trans-04 pointer">Détails</a></div>
+
+
+                        </td>
+
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+
+        <div class="container stext-101 cl6 text-center">
+            Aucune commande trouvé
+        </div>
+
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

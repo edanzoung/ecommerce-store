@@ -1,0 +1,75 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+<!-- breadcrumb -->
+<div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+    </div>
+</div>
+<!-- breadcrumb -->
+<div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+    </div>
+</div>
+
+<div class="container bg-dark">
+    <div class="login-wrap bg-dark">
+        <div class="card bg-light text-center">
+            <h2> REINITIALISATION &nbsp; MOT DE PASSE</h2>
+        </div>
+        <div class="login-content">
+
+
+            <div class="login-form">
+                {% include 'includes/alert.html' %}
+                <form action="{% url 'reset_pass' %}" method="POST">
+                    {% csrf_token %}
+                    
+                    <div class="container">
+                        <div class="form-group col-lg-12">
+                            <label>Mot De Passe</label>
+                            <input class="form-control" type="password" name="password" placeholder="">
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <label>Confirmer Mot De Passe</label>
+                            <input class="form-control" type="password" name="confirm_password" placeholder="">
+                        </div>
+                    </div>
+                    <div class="social-button col-lg-12">
+                        <button type="submit" class="au-btn au-btn--block au-btn--green m-b-20 text-center">Réinitialiser</button>
+                    </div>
+
+                </form>
+                <div class="register-link">
+                    <p>
+                        Pas Encore De Compte ?
+                        <a href="{% url 'register' %}">
+                            <span class="flex-c-m stext-101 cl1 size-18  hov-btn2 p-lr-5 trans-04 pointer">
+                                Créer un compte
+                            </span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- breadcrumb -->
+    <div class="container">
+        <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+        </div>
+    </div>
+    <!-- breadcrumb -->
+    <div class="container">
+        <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endblock %}

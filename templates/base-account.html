@@ -1,0 +1,189 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+<!-- breadcrumb -->
+<div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+    </div>
+</div>
+<!-- breadcrumb -->
+<div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+    </div>
+</div>
+
+<div class="page-wrapper">
+    <!-- HEADER DESKTOP-->
+    <header class="header-desktop3 d-none d-lg-block">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="header-wrap">
+                    <div class="header__logo">
+
+                    </div>
+
+                    <div class="header-button">
+
+                        <div class="account-wrap">
+                            <div class="account-item clearfix js-item-menu">
+                                <div class="image">
+                                    {% if userprofile.profile_picture.url %}
+                                    <img src="{{userprofile.profile_picture.url}}" alt="{{user.username}}" />
+                                    {% else %}
+                                    <img src="{% static 'images/icons/avatar.png' %}" alt="{{user.username}}" />
+                                    {% endif %}
+                                </div>
+                                <div class="content">
+                                    <a class="js-acc-btn text-light" href="#">{{user.username}}</a>
+                                </div>
+                                <div class="account-dropdown js-dropdown">
+                                    <div class="info clearfix">
+                                        <div class="image">
+                                            <a href="{% url 'account' %}">
+                                                <img src="{{userprofile.profile_picture.url}}" alt="" />
+                                            </a>
+                                        </div>
+                                        <div class="content">
+                                            <h5 class="name">
+                                                <a href="{% url 'account' %}">{{user.username}}</a>
+                                            </h5>
+                                            <span class="email">{{user.email}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="account-dropdown__body">
+                                        <div class="account-dropdown__item">
+                                            <a href="{% url 'mon_profil' %}">
+                                                <i class="zmdi zmdi-account"></i>Mon Profil</a>
+                                        </div>
+                                        <div class="account-dropdown__item">
+                                            <a href="{% url 'mes_commandes' %}">
+                                                <i class="zmdi zmdi-shopping-cart"></i>Mes Commandes</a>
+                                        </div>
+                                        <div class="account-dropdown__item">
+                                            <a href="{% url 'mes_transactions' %}">
+                                                <i class="zmdi zmdi-card"></i>Mes Transactions</a>
+                                        </div>
+                                        <div class="account-dropdown__item">
+                                            <a href="{% url 'mes_statistiques' %}">
+                                                <i class="zmdi zmdi-view-week"></i>Mes Statistiques</a>
+                                        </div>
+                                        <div class="account-dropdown__item">
+                                            <a href="{% url 'remboursements' %}">
+                                                <i class="zmdi zmdi-money"></i>Retours & Remboursements</a>
+                                        </div>
+                                        <div class="account-dropdown__item">
+                                            <a href="{% url 'parametre' %}">
+                                                <i class="zmdi zmdi-settings"></i>Paramètres</a>
+                                        </div>
+                                    </div>
+                                    <div class="account-dropdown__footer">
+                                        <a href="{% url 'logout' %}">
+                                            <i class="zmdi zmdi-power"></i>Déconnecter</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- END HEADER DESKTOP-->
+
+    <div class="sub-header-mobile-2 d-block d-lg-none bg-dark">
+        <div class="header__tool">
+
+            <div class="account-wrap">
+                <div class="account-item clearfix js-item-menu">
+                    <div class="image">
+                        {% if userprofile.profile_picture.url %}
+                        <img src="{{userprofile.profile_picture.url}}" alt="{{user.username}}" />
+                        {% else %}
+                        <img src="{% static 'images/icons/avatar.png' %}" alt="{{user.username}}" />
+                        {% endif %}
+                    </div>
+                    <div class="content">
+                        <a class="js-acc-btn text-light" href="#">{{user.username}}</a>
+                    </div>
+                    <div class="account-dropdown js-dropdown">
+                        <div class="info clearfix">
+                            <div class="image">
+                                <a href="{% url 'account' %}">
+                                    <img src="{{userprofile.profile_picture.url}}" alt="" />
+                                </a>
+                            </div>
+                            <div class="content">
+                                <h5 class="name">
+                                    <a href="{% url 'account' %}">{{user.username}}</a>
+                                </h5>
+                                <span class="email">{{user.email}}</span>
+                            </div>
+                        </div>
+                        <div class="account-dropdown__body">
+                            <div class="account-dropdown__item">
+                                <a href="{% url 'mon_profil' %}">
+                                    <i class="zmdi zmdi-account"></i>Mon Profil</a>
+                            </div>
+                            <div class="account-dropdown__item">
+                                <a href="{% url 'mes_commandes' %}">
+                                    <i class="zmdi zmdi-shopping-cart"></i>Mes Commandes</a>
+                            </div>
+                            <div class="account-dropdown__item">
+                                <a href="{% url 'mes_transactions' %}">
+                                    <i class="zmdi zmdi-card"></i>Mes Transactions</a>
+                            </div>
+                            <div class="account-dropdown__item">
+                                <a href="{% url 'mes_statistiques' %}">
+                                    <i class="zmdi zmdi-view-week"></i>Mes Statistiques</a>
+                            </div>
+                            <div class="account-dropdown__item">
+                                <a href="{% url 'remboursements' %}">
+                                    <i class="zmdi zmdi-money"></i>Retours & Remboursements</a>
+                            </div>
+                            <div class="account-dropdown__item">
+                                <a href="{% url 'parametre' %}">
+                                    <i class="zmdi zmdi-settings"></i>Paramètres</a>
+                            </div>
+                        </div>
+                        <div class="account-dropdown__footer">
+                            <a href="{% url 'logout' %}">
+                                <i class="zmdi zmdi-power"></i>Déconnecter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END HEADER MOBILE -->
+
+    <!-- PAGE CONTENT-->
+    <div class="page-content--bgf7">
+
+        {% block welcome %} {% endblock %}
+
+        <section class="welcome p-t-10">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="overview-wrap">
+                            <h2 class="title-1">{% block title %} {% endblock %}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN CONTENT-->
+        <div class="main-content bg-dark">
+            <div class="section__content section__content--p30 ">
+
+
+                {% block body %} {% endblock %}
+
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

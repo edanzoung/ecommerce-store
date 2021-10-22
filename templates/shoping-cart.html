@@ -1,0 +1,299 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+
+<!-- breadcrumb -->
+
+
+<div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+    </div>
+</div>
+
+<!-- breadcrumb -->
+<div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+    </div>
+</div>
+<!-- breadcrumb -->
+<div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+    </div>
+</div>
+
+<!-- Shoping Cart -->
+<section class="section-content">
+    <div class="container">
+
+        {% if not cart_items %}
+
+        <div class="container text-center">
+            <div class="card ">
+                <div class="card-header bg-dark text-danger">
+
+                    <span class="text. font-weight-bold text-uppercase">
+                        Votre panier est vide
+                    </span>
+                </div>
+
+
+                <div class="card-body bg-secondary">
+
+                    <a href="{% url 'product' %}" class="text. font-weight-bold text-uppercase cl2 bg8 bor13 hov-btn3 p-lr-10 trans-04 pointer">
+                        Retourner à la boutique
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+    <div class="row">
+        <aside class="col-lg-8">
+            <div class="wrap-table-shopping-cart">
+                <table class="table-shopping-cart">
+
+
+                    <tr class="table_head bg-dark text-center">
+                        <th class="column-1 text-warning">Photo</th>
+                        <th class="column-2 text-warning">Nom & Détail</th>
+                        <th class="column-3 text-warning">Prix Unitaire</th>
+                        <th class="column-3 text-warning"></th>
+                        <th class="column-5 text-warning">Quantité</th>
+                        <th class="column-1 text-warning"></th>
+                        <th class="column-1 text-warning"></th>
+                        <th class="column-1 text-warning"></th>
+                    </tr>
+                    {% if cart_items %}
+                    {% for cart_item in cart_items %}
+
+                    <tr class="table_row">
+                        <td class="bg-light">
+                            <div class="header-cart-item-img">
+                                <img src="{{cart_item.product.image1_drone.url}}" class="img-sm">
+                            </div>
+                        </td>
+
+                        <td class="text-dark text-left">
+                            <div class="text-left">
+                                <a href="{% url 'product_detail' cart_item.product.id %}">
+                                    <span class="flex-c-m stext-101 cl1 size-14 bg-light hov-btn2 p-lr-5 trans-04 pointer">
+                                        {{cart_item.product.marque_drone}} {{cart_item.product.modele_drone}}
+                                    </span>
+                                </a><br>
+                                <small class="mtext-95 small ">
+
+                                    {% for i in cart_item.variations.all %}
+                                    {{i.variation_value | capfirst }} <br>
+                                    {% endfor %}
+
+                                </small>
+                            </div>
+                        </td>
+
+
+
+                        <td class="text-dark">
+                            <div class="text-left">
+                                {{cart_item.product.prix_drone}} XOF
+                            </div>
+                        </td>
+
+                        <td class="text-dark">
+
+                        </td>
+
+
+
+                        <td>
+                            <div class="input-group input-spinner">
+
+
+                                <a href="{% url 'remove_cart' cart_item.product.id cart_item.id %}" class="btn btn-dark">
+                                    <i class="fs-12 fa fa-minus"></i>
+                                </a>
+
+
+                                <input type="text" class="form-control" value="{{cart_item.quantite}}">
+
+                                <form action="{% url 'add_cart' cart_item.product.id %}" method="POST">
+                                    {% csrf_token %}
+
+                                    {% for i in cart_item.variations.all %}
+                                    <input class="form-control" type="hidden" value="{{i.variation_value | capfirst}}" name="{{i.variation_category | lower }}">
+                                    {% endfor %}
+
+                                    <button class=" btn btn-success" type="submit">
+                                        <i class="fs-12 fa fa-plus"></i>
+                                    </button>
+                                </form>
+
+
+                            </div>
+                        </td>
+
+
+
+                        <td>
+                        </td>
+
+
+
+                        <td>
+                            <a onclick="remove_item()" href="{% url 'remove_cart_item' cart_item.product.id cart_item.id %}" class="btn btn-outline-danger"> Retirer
+                            </a>
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+                    {% endif %}
+
+                </table>
+            </div>
+        </aside>
+
+        <aside class="col-lg-4">
+
+            <div class="card ">
+                <div class="card-header bg-dark">
+                    <h4 class=" text-light">
+                        Totals
+                    </h4>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="container text-center">
+
+                        <span class="stext-110 cl2">
+                            Total HT: {{total}} XOF
+                        </span>
+
+                    </div>
+                    <div class="container text-center">
+
+                        <span class="cl2">
+                            Impôt à payer: 18% du prix HT
+                        </span>
+
+                    </div>
+
+                    <hr>
+
+                    <div class="container text-center">
+
+                        <span class="mtext-101 cl2">
+                            Impôts: {{impot}} XOF
+                        </span>
+
+                    </div>
+                    <div class="container text-center">
+
+                        <span class="mtext-101 cl2">
+                            Total TTC: {{grand_total}} XOF
+                        </span>
+
+                    </div>
+
+                    <hr>
+                    <p class="text-center mb-3">
+                        <img src="{% static 'images/icons/payments.png' %}" height="26">
+                    </p>
+                    <hr>
+                    <div class="card-footer">
+                        <div class="container">
+
+                            <div class="container col-md-12">
+                                <button onclick="remove_all()" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                                    <i class="fa fa-shopping-cart fa-lg"></i>&nbsp;
+                                    Vider le panier
+                                </button>
+                            </div>
+
+                            <hr>
+
+                            <div class="container col-md-12">
+                                <a href="{% url 'checkout' %}" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                                    <i class="fa fa-refresh fa-lg"></i>&nbsp;
+                                    Checkout
+                                </a>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </aside>
+    </div>
+    {% endif %}
+
+
+</section>
+
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+    function remove_all() {
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: true
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Êtes vous sûr?',
+            text: "Le panier sera vidé",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Oui, Vidé!',
+            cancelButtonText: 'Non, Annulé!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                swalWithBootstrapButtons.fire(
+                    'Retiré!',
+                    'Panier vidé avec succès.',
+                    'success'
+                )
+                window.location.href = "{% url 'remove_all' %}";
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Annulé',
+                    'Panier toujours intact',
+                    'error'
+                )
+                window.location.href = "{% url 'cart' %}";
+            }
+        })
+
+        /*Swal.fire("PANIER",
+            "Vidé avec succès !",
+            "success",
+        ).then(
+
+        )*/
+    }
+
+    function remove_item() {
+
+        Swal.fire(
+            "Produit",
+            'retiré avec succès.',
+            'success'
+        )
+    }
+
+</script>
+
+{% endblock %}

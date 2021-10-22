@@ -1,0 +1,13 @@
+{% autoescape off %}
+
+Salut {{user.first_name}} !
+
+S'il vous plaît, veuillez cliquer sur ce lien ci-dessous pour confirmer votre inscription sur FasoDrone.
+
+http://{{domain}}{% url 'activate' uidb64=uid token=token %}
+
+Si vous pensez que ce n'est pas vous, ignorer ce email.
+
+Ce email a été envoyé par un robot, merci de ne pas y repondre!
+
+{% endautoescape %}

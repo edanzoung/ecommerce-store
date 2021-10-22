@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% load static %}
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- ######################## Cosa Store Template LINKS ############################# -->
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="{% static 'images/icons/favicon.png' %}" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css'%}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/linearicons-v1.0.0/icon-font.min.css'%}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css'%}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css'%}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css'%}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css'%}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css'%}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/slick/slick.css'%}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/MagnificPopup/magnific-popup.css'%}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css'%}">
+    <!--===============================================================================================-->
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/util.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+
+    <!--===============================================================================================-->
+    <!-- ######################## Cosa Store Template LINKS ############################# -->
+
+    <!-- ######################## Cool Admin Template LINKS ############################# -->
+    <!--===============================================================================================-->
+    <!-- Fontfaces CSS
+    <link href="{% static 'css/font-face.css '%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/font-awesome-4.7/css/font-awesome.min.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/font-awesome-5/css/fontawesome-all.min.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/mdi-font/css/material-design-iconic-font.min.css'%}" rel="stylesheet" media="all">-->
+    <!--===============================================================================================-->
+
+
+    <!-- Vendor CSS-->
+    <!--<link href="{% static 'vendor/animsition/animsition.min.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/css-hamburgers/hamburgers.min.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/select2/select2.min.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/wow/animate.css'%}" rel="stylesheet" media="all">-->
+    <!--===============================================================================================-->
+    <!-- Main CSS-->
+    <link href="{% static 'css/theme.css' %}" rel="stylesheet" media="all">
+    <!--===============================================================================================-->
+    <!-- ######################## Cool Admin Template LINKS ############################# -->
+
+    <script src="https://www.paypal.com/sdk/js?client-id=AaPCQanNpLoRe_b850vsu_kzvp-770mkZrfE28sCUSL9gOglgFavzHujNIiIGe3O44Iw8H80QCLvPAKA&currency=USD"></script>
+
+    {% block style %} {% endblock %}
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+
+        {% include 'includes/navbar.html' %}
+
+        <!-- Modal Search -->
+        <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+            <div class="container-search-header">
+                <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+                    <img src="{% static 'images/icons/icon-close2.png'%}" alt="CLOSE">
+                </button>
+
+                <form class="wrap-search-header flex-w p-l-15" action="{% url 'search' %}" method="GET">
+                    <button class="flex-c-m trans-04" type="submit">
+                        <i class="zmdi zmdi-search"></i>
+                    </button>
+                    <input class="plh3" name="keyword" type="search" placeholder="Chercher ici">
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart -->
+    <div class="wrap-header-cart js-panel-cart">
+        <div class="s-full js-hide-cart"></div>
+
+        <div class="header-cart flex-col-l p-l-65 p-r-25">
+            <div class="header-cart-title flex-w flex-sb-m p-b-8">
+                <span class="mtext-103 cl2">
+                    Aperçu &nbsp; Panier
+                </span>
+
+                <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+                    <i class="zmdi zmdi-close"></i>
+                </div>
+            </div>
+
+            <div class="header-cart-content flex-w js-pscroll">
+                <ul class="header-cart-wrapitem w-full">
+                    {% if overview_cart_items %}
+                    {% for cart_item in overview_cart_items %}
+                    <li class="header-cart-item flex-w flex-t m-b-12">
+                        <div class="header-cart-item">
+                            <div class="header-cart-item-img">
+                                <img src="{{cart_item.product.image1_drone.url}}" alt="IMG">
+                            </div>
+                        </div>
+
+                        <div class="header-cart-item-txt p-t-8">
+
+                            <a href="{% url 'product_detail' cart_item.product.id %}" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                                {{cart_item.product.marque_drone}} {{cart_item.product.modele_drone}}
+                            </a>
+
+
+                            <div class="container">
+                                <small class="mtext-95 small ">
+
+                                    {% for i in cart_item.variations.all %}
+                                    {{i.variation_value | capfirst }}
+                                    {% endfor %}
+
+                                </small>
+                                <aside>
+                                    <span class="header-cart-item-info">
+                                        {{cart_item.quantite}} &nbsp; x &nbsp; {{cart_item.product.prix_drone}} XOF
+                                    </span>
+                                </aside>
+
+                            </div>
+                        </div>
+
+
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+                </ul>
+
+                <div class="w-full">
+                    <div class="header-cart-total w-full p-tb-40">
+                        Total HT: {{total}} XOF
+                    </div>
+
+                    <div class="header-cart-buttons flex-w w-full">
+                        <a href="{% url 'cart' %}" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+                            Voir Panier
+                        </a>
+
+                        <a href="{% url 'checkout' %}" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+                            Checkout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <main>{% block content %}{% endblock %}</main>
+
+    {% include 'includes/footer.html' %}
+
+    <!-- Back to top -->
+    <div class="btn-back-to-top" id="myBtn">
+        <span class="symbol-btn-back-to-top">
+            <i class="zmdi zmdi-chevron-up"></i>
+        </span>
+    </div>
+
+
+
+
+    <!-- ######################## Cosa Store Template LINKS ############################# -->
+    <!--===============================================================================================-->
+    <!--===============================================================================================-->
+    <script src="{% static 'vendor/jquery/jquery-3.2.1.min.js'%}"></script>
+    <!--===============================================================================================-->
+    <script src="{% static 'vendor/animsition/js/animsition.min.js'%}"></script>
+    <!--===============================================================================================-->
+    <script src="{% static 'vendor/bootstrap/js/popper.js'%}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+    <!--===============================================================================================-->
+    <script src="{% static 'vendor/select2/select2.min.js'%}"></script>
+    <script>
+        $(".js-select2").each(function() {
+            $(this).select2({
+                minimumResultsForSearch: 20,
+                dropdownParent: $(this).next('.dropDownSelect2')
+            });
+        })
+
+    </script>
+    <!--===============================================================================================-->
+    <script src="{% static 'vendor/daterangepicker/moment.min.js'%}"></script>
+    <script src="{% static 'vendor/daterangepicker/daterangepicker.js'%}"></script>
+    <!--===============================================================================================-->
+    <script src="{% static 'vendor/slick/slick.min.js'%}"></script>
+    <script src="{% static 'js/slick-custom.js'%}"></script>
+    <!--===============================================================================================-->
+    <script src="{% static 'vendor/parallax100/parallax100.js'%}"></script>
+    <script>
+        $('.parallax100').parallax100();
+
+    </script>
+    <!--===============================================================================================-->
+    <script src="{% static 'vendor/MagnificPopup/jquery.magnific-popup.min.js'%}"></script>
+    <script>
+        $('.gallery-lb').each(function() { // the containers for all your galleries
+            $(this).magnificPopup({
+                delegate: 'a', // the selector for gallery item
+                type: 'image',
+                gallery: {
+                    enabled: true
+                },
+                mainClass: 'mfp-fade'
+            });
+        });
+
+    </script>
+    <!--===============================================================================================-->
+    <script src="{% static 'vendor/isotope/isotope.pkgd.min.js'%}"></script>
+    <!--===============================================================================================-->
+    <!--<script src="{% static 'vendor/sweetalert/sweetalert.min.js'%}"></script>-->
+    <script src="{% static 'js/sweetalert.min.js'%}"></script>
+
+    <script>
+        $('.js-addwish-b2').on('click', function(e) {
+            e.preventDefault();
+        });
+
+        $('.js-addwish-b2').each(function() {
+            var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+            $(this).on('click', function() {
+                swal(nameProduct, "is added to wishlist !", "success");
+
+                $(this).addClass('js-addedwish-b2');
+                $(this).off('click');
+            });
+        });
+
+        $('.js-addwish-detail').each(function() {
+            var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+            $(this).on('click', function() {
+                swal(nameProduct, "is added to wishlist !", "success");
+
+                $(this).addClass('js-addedwish-detail');
+                $(this).off('click');
+            });
+        });
+
+        /*---------------------------------------------*/
+        $('.js-addreview').each(function() {
+            var nameProduct = $(this).parent().parent().parent().parent().find('.title-review').html();
+            $(this).on('click', function() {
+                Swal.fire(nameProduct, "Review ajouté avec succès", "success");
+            });
+        });
+
+    </script>
+    <!--===============================================================================================-->
+    <script src="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.min.js'%}"></script>
+    <script>
+        $('.js-pscroll').each(function() {
+            $(this).css('position', 'relative');
+            $(this).css('overflow', 'hidden');
+            var ps = new PerfectScrollbar(this, {
+                wheelSpeed: 1,
+                scrollingThreshold: 1000,
+                wheelPropagation: false,
+            });
+
+            $(window).on('resize', function() {
+                ps.update();
+            })
+        });
+
+    </script>
+
+    {% block javascript %} {% endblock %}
+
+
+
+    <!--===============================================================================================-->
+    <!-- ######################## Cosa Store Template LINKS ############################# -->
+
+
+    <!-- ######################## Cool Admin Template LINKS ############################# -->
+    <!--===============================================================================================-->
+    <!--===============================================================================================-->
+
+    <!-- Vendor JS       -->
+    <!--<script src="{% static 'vendor/wow/wow.min.js'%}"></script>-->
+    <script src="{% static 'vendor/bootstrap-progressbar/bootstrap-progressbar.min.js'%}"></script>
+    <!--<script src="{% static 'vendor/counter-up/jquery.waypoints.min.js'%}"></script>-->
+    <!--<script src="{% static 'vendor/counter-up/jquery.counterup.min.js'%}"></script>-->
+    <script src="{% static 'vendor/circle-progress/circle-progress.min.js'%}"></script>
+    <script src="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.js'%}"></script>
+    <script src="{% static 'vendor/chartjs/Chart.bundle.min.js'%}"></script>
+    <!--===============================================================================================-->
+    <!--===============================================================================================-->
+    <!-- ######################## Cool Admin Template LINKS ############################# -->
+
+    <!--===============================================================================================-->
+
+
+    <script src="{% static 'js/main.js'%}"></script>
+
+
+</body>
+
+</html>

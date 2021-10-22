@@ -1,0 +1,106 @@
+{% extends 'base-account.html'%}
+{% load static %}
+
+{% block welcome %}
+<!-- WELCOME-->
+<section class="welcome p-t-10">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="title-4"> Bienvenue
+                    <span>{{user.username}}</span>
+                </h1>
+                <hr class="line-seprate">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END WELCOME-->
+{% endblock %}
+
+{% block title%} Tableau De Bord {% endblock %}
+
+{% block body %}
+<div class="row m-t-25">
+    <div class="col-sm-6 col-lg-3">
+        <div class="overview-item overview-item--c2">
+            <div class="overview__inner">
+                <div class="overview-box clearfix">
+                    <div class="icon">
+                        <i class="zmdi zmdi-shopping-cart"></i>
+                    </div>
+                    <div class="text">
+                        <a href="{% url 'cart' %}">
+                            <h2>{{cart_count}}</h2>
+                        </a><br>
+                        <span>Total Panier</span>
+                    </div>
+                </div>
+                <div class="overview-chart">
+                    <canvas id="widgetChart4"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="overview-item overview-item--c2">
+            <div class="overview__inner">
+                <div class="overview-box clearfix">
+                    <div class="icon">
+                        <i class="zmdi zmdi-shopping-cart"></i>
+                    </div>
+                    <div class="text">
+                        <a href="{% url 'mes_commandes' %}">
+                            <h2>{{orders_count}}</h2>
+                        </a><br>
+                        <span>Commandes</span>
+                    </div>
+                </div>
+                <div class="overview-chart">
+                    <canvas id="widgetChart2"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="overview-item overview-item--c1">
+            <div class="overview__inner">
+                <div class="overview-box clearfix">
+                    <div class="icon">
+                        <i class="zmdi zmdi-calendar-note"></i>
+                    </div>
+                    <div class="text">
+                        <a href="{% url 'mes_transactions' %}">
+                            <h2>{{orders_count}}</h2>
+                        </a><br>
+                        <span>Transactions</span>
+                    </div>
+                </div>
+                <div class="overview-chart">
+                    <canvas id="widgetChart1"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="overview-item overview-item--c3">
+            <div class="overview__inner">
+                <div class="overview-box clearfix">
+                    <div class="icon">
+                        <i class="zmdi zmdi-money"></i>
+                    </div>
+                    <div class="text">
+                        <a href="{% url 'mes_commandes' %}">
+                            <h2>{{grand_total_order}}</h2>
+                        </a><br>
+                        <span>Total Dépense</span>
+                    </div>
+                </div>
+                <div class="overview-chart">
+                    <canvas id="widgetChart3"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

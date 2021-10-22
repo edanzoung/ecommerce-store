@@ -1,0 +1,122 @@
+{% extends 'base-account.html'%}
+{% load static %}
+
+{% block title%} Paramètres {% endblock %}
+
+{% block style %}
+<style>
+    /*#############################################################*/
+    /*#############################################################*/
+    /*#############################################################*/
+
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #BA68C8
+    }
+
+    .profile-button {
+        background: rgb(99, 39, 120);
+        box-shadow: none;
+        border: none
+    }
+
+    .profile-button:hover {
+        background: #682773
+    }
+
+    .profile-button:focus {
+        background: #682773;
+        box-shadow: none
+    }
+
+    .profile-button:active {
+        background: #682773;
+        box-shadow: none
+    }
+
+    .back:hover {
+        color: #682773;
+        cursor: pointer
+    }
+
+    .labels {
+        font-size: 11px
+    }
+
+    .add-experience:hover {
+        background: #BA68C8;
+        color: #fff;
+        cursor: pointer;
+        border: solid 1px #BA68C8
+    }
+
+    /*#############################################################*/
+    /*#############################################################*/
+    /*#############################################################*/
+
+</style>
+{% endblock %}
+
+{% block body %}
+
+<div class="container rounded bg-white mt-5 mb-5 ">
+    <div class="row bg-dark">
+        <div class="col-md-3 border-right bg-dark">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="img-rounded rounded-circle py-5" src="{{userprofile.profile_picture.url}}"><span class="font-weight-bold text-light">{{userprofile.user.username}}</span><span class="text-light">{{userprofile.user.email}}</span><span> </span></div>
+        </div>
+        <div class="col-md-5 border-right bg-dark">
+            {% include 'includes/alert.html' %}
+            <div class="p-3 py-5 ">
+                <div class="d-flex justify-content-between align-items-center mb-3 ">
+                    <h4 class="text-right text-light">Profil d'utilisateur</h4>
+                </div>
+                <form action="{% url 'edit_profile' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-row mt-2">
+                        <div class="form-group col-md-6"><label class="labels text-light">Prénom</label>{{user_form.first_name}}</div>
+                        <div class="form-group col-md-6"><label class="labels text-light">Nom de famille</label>{{user_form.last_name}}</div>
+                    </div>
+                    <div class="form-row mt-3">
+                        <div class="form-group col-md-6"><label class="labels text-light">Téléphone</label>{{user_form.phone_number}}</div>
+                        <div class=" form-group col-md-6"><label class="labels text-light">Adresse 1</label>{{profile_form.address_line_1}}</div>
+
+                    </div>
+                    <div class="form-row mt-3">
+                        <div class="form-group col-md-6"><label class="labels text-light">Adresse 2</label>{{profile_form.address_line_2}}</div>
+                        <div class="form-group col-md-6"><label class="labels text-light">Sexe</label>{{user_form.gender}}</div>
+                        <div class="form-group col-md-6"><label class="labels text-light">Pays</label>{{user_form.country}}</div>
+                        <div class="form-group col-md-6"><label class="labels text-light">Région</label>{{user_form.state}}</div>
+                        <div class="form-group col-md-6"><label class="labels text-light">Ville</label>{{user_form.city}}</div>
+                        <div class="form-group col-md-6"><label class="labels text-light">Quartier</label>{{user_form.quartier}}</div>
+                    </div>
+                    <div class="form-row mt-3">
+                        <div class="form-group col-md-12"><label class="labels text-light">Photo</label>{{profile_form.profile_picture}}</div>
+                    </div>
+                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Mettre à jour les changements</button></div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <form action="{% url 'change_password' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="d-flex justify-content-between align-items-center experience">
+                        <span class="text-light">Changer Mot de passe</span>
+
+                        <span>
+                            <button type="submit" class="btn btn-primary border px-3 p-1 add-experience text-light"><i class="fa fa-refresh"></i> &nbsp;Changer</button>
+                        </span>
+                    </div>
+                    <br>
+                    <div class="col-md-12"><label class="labels text-light">Ancien Mot de passe</label><input type="password" class="form-control" placeholder="mot de passe actuel" name="current_password"></div> <br>
+                    <div class="col-md-12"><label class="labels text-light">Nouveau Mot de passe</label><input type="password" class="form-control" placeholder="nouveau ici" name="new_password"></div> <br>
+                    <div class="col-md-12"><label class="labels text-light">Confirmer Mot de passe</label><input type="password" class="form-control" placeholder="comfirmer le nouveau" name="confirm_password"></div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,416 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- breadcrumb -->
+<div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+    </div>
+</div>
+<!-- breadcrumb -->
+<div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+    </div>
+</div>
+
+<!-- Product -->
+<div class="bg0 m-t-23 p-b-140">
+    <div class="container">
+        <div class="flex-w flex-sb-m p-b-52">
+
+
+            <div class="flex-w flex-l-m filter-tope-group m-tb-10">
+                <strong>
+                    <a class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5" href="{% url 'product' %}">
+                        Toutes les catégories
+                    </a>
+                </strong>
+
+                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="*">
+                    Tout voir
+                </button>
+
+                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".Loisir">
+                    Loisir
+                </button>
+
+                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".Racing">
+                    Racing
+                </button>
+
+                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".Professionnel">
+                    Professionnel
+                </button>
+            </div>
+
+            <div class="flex-w flex-c-m m-tb-10">
+                <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+                    <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
+                    <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+                    Filtrer
+                </div>
+
+                <div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
+                    <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
+                    <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+                    Recherche
+                </div>
+            </div>
+
+            <!-- Search product -->
+            <div class="dis-none panel-search w-full p-t-10 p-b-15">
+                <form action="{% url 'search' %}" method="GET">
+                    <div class="bor8 dis-flex p-l-15">
+                        <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" type="submit">
+                            <i class="zmdi zmdi-search"></i>
+                        </button>
+
+                        <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="search" name="keyword" placeholder="Rechercher Ici">
+                    </div>
+                </form>
+            </div>
+
+            <!-- Filter -->
+            <div class="dis-none panel-filter w-full p-t-10">
+                <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+
+                    <div class="filter-col3 p-r-15 p-b-27 filter-tope-group">
+                        <div class="mtext-102 cl2 p-b-15">
+                            Couleur
+                        </div>
+
+                        <ul>
+                            <li class="p-b-6">
+                                <button class="filter-link stext-106 trans-04 filter-link-active" data-filter="*">
+                                    Tous Les Produits
+                                </button>
+                            </li>
+
+                            <li class="p-b-6">
+                                <span class="fs-15 lh-12 m-r-6" style="color: #fa4251">
+                                    <i class="zmdi zmdi-circle"></i>
+                                </span>
+
+                                <button class="filter-link stext-106 trans-04" data-filter=".Rouge">
+                                    Rouge
+                                </button>
+                            </li>
+
+                            <li class="p-b-6">
+                                <span class="fs-15 lh-12 m-r-6" style="color: #fff">
+                                    <i class="zmdi zmdi-circle"></i>
+                                </span>
+
+                                <button class="filter-link stext-106 trans-04" data-filter=".Blanc">
+                                    Blanc
+                                </button>
+                            </li>
+                            <li class="p-b-6">
+                                <span class="fs-15 lh-12 m-r-6" style="color: rgba(255,130,0,1)">
+                                    <i class="zmdi zmdi-circle"></i>
+                                </span>
+
+                                <button class="filter-link stext-106 trans-04" data-filter=".Orange">
+                                    Orange
+                                </button>
+                            </li>
+                            <li class="p-b-6">
+                                <span class="fs-15 lh-12 m-r-6" style="color: rgba(255,240,0,1)">
+                                    <i class="zmdi zmdi-circle"></i>
+                                </span>
+
+                                <button class="filter-link stext-106 trans-04" data-filter=".Jaune">
+                                    Jaune
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="filter-col3 p-r-15 p-b-27 filter-tope-group">
+                        <div class="mtext-102 cl2 p-b-15">
+                            <br><br>
+                        </div>
+                        <ul>
+                            <li class="p-b-6">
+                                <span class="fs-15 lh-12 m-r-6" style="color: #222">
+                                    <i class="zmdi zmdi-circle"></i>
+                                </span>
+
+                                <button class="filter-link stext-106 trans-04" data-filter=".Noir">
+                                    Noir
+                                </button>
+                            </li>
+
+                            <li class="p-b-6">
+                                <span class="fs-15 lh-12 m-r-6" style="color: #4272d7">
+                                    <i class="zmdi zmdi-circle"></i>
+                                </span>
+
+                                <button class="filter-link stext-106 trans-04" data-filter=".Bleu">
+                                    Bleu
+                                </button>
+                            </li>
+
+                            <li class="p-b-6">
+                                <span class="fs-15 lh-12 m-r-6" style="color: #b3b3b3">
+                                    <i class="zmdi zmdi-circle"></i>
+                                </span>
+
+                                <button class="filter-link stext-106 trans-04" data-filter=".Gris">
+                                    Gris
+                                </button>
+                            </li>
+
+                            <li class="p-b-6">
+                                <span class="fs-15 lh-12 m-r-6" style="color: #00ad5f">
+                                    <i class="zmdi zmdi-circle"></i>
+                                </span>
+
+                                <button class="filter-link stext-106 trans-04" data-filter=".Vert">
+                                    Vert
+                                </button>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="filter-col4 p-b-27 ">
+                        <div class="mtext-102 cl2 p-b-15 ">
+                            Catégories
+                        </div>
+
+                        <div class="flex-w p-t-4 m-r--5">
+
+                            <a href="{% url 'product' %}" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+                                TOUTES LES CATEGORIES
+                            </a>
+                            {% for category in links %}
+                            <a href="{{category.get_url}}" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+                                {{category.category_name}}
+                            </a>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--
+        {% for i in drones %}
+        <div>
+            {{i.marque_drone}} {{i.modele_drone}}
+        </div>
+        {% endfor %}
+        <div>
+            -----------------------------------------------
+        </div>
+        {% for i in page_obj.object_list %}
+        <div>
+            {{i.marque_drone}} {{i.modele_drone}}
+        </div>
+        {% endfor %}       
+        -->
+        <!-- Nombre total des produits -->
+        <div class="col-lg-12 text-center">
+            <div class="container">
+                <strong>
+                    {% if list_drone_size == 1 %}
+                    {{list_drone_size}} produit trouvé
+                    {% endif %}
+                    {% if list_drone_size > 1 %}
+                    {{list_drone_size}} produits trouvés
+                    {% endif %}
+                </strong>
+            </div>
+        </div>
+        <!-- breadcrumb -->
+        <div class="container">
+            <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+            </div>
+        </div>
+
+        <div class=" isotope-grid">
+
+            {% if list_drone_size > 0 %}
+            {% for drone in page_obj.object_list %}
+
+            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{ drone.categorie_drone }} 
+             isotope-item {% for i in drone.variation_set.colors %}{{ i.variation_value }}{% endfor %}">
+                <!-- Block2 -->
+                <div class="block2">
+
+
+                    <div class=" col-lg-12 text-center">
+
+                        <div class="card bg-dark ">
+
+                            {% if drone.quantite_drone > 0 %}
+                            <div class="ribbon1"><span>En Stock</span></div>
+                            {% else %}
+                            <div class="ribbon2"><span>Hors Stock</span></div>
+                            {% endif %}
+
+                            <div class="block2-pic hov-img0">
+                                <img src="/{{drone.image1_drone}}" alt="IMG-PRODUCT">
+                            </div>
+                            <div class='col-lg-12'>
+                                <div class='ribbon3 '>
+                                    <span class="flex-c-m stext-101 cl2 size-25 bg8 p-lr-15 trans-04 pointer">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                </div>
+                                <div class='ribbon4'>
+                                    <span class="flex-c-m stext-101 cl2 size-25 bg8 p-lr-15 trans-04 pointer">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                </div>
+                            </div>
+                            <div class='col-lg-12 text-center'>
+                                <a href="{% url 'product_detail' drone.id %}">
+                                    <span class="flex-c-m stext-101 cl1 size-18 bg-dark hov-btn1 p-lr-5 trans-04 pointer">{{ drone.marque_drone }} {{ drone.modele_drone }}</span>
+                                </a>
+                            </div>
+
+
+                            {% if drone.quantite_drone > 0 %}
+                            <div class="col-lg-12 text-center">
+                                <a class="flex-c-m stext-105 size-20 bg-light">
+                                    Prix: {{ drone.prix_drone }} XOF
+                                </a>
+                            </div>
+                            <div class="col-lg-12 text-center">
+                                <a class="flex-c-m stext-105 size-20 bg-light">
+                                    Portée: {{ drone.distance_drone }} Km
+                                </a>
+                            </div>
+                            <div class="col-lg-12 text-center">
+                                <a class="flex-c-m stext-105 size-20 bg-light">
+                                    Autonomie: {{ drone.autonomie_drone }} Mn
+                                </a>
+                            </div>
+                            <div class="col-lg-12 text-center">
+                                <a class="flex-c-m stext-105 size-20 bg-light">
+                                    Vitesse: {{ drone.vitesse_drone }} Km/h
+                                </a>
+                            </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+
+
+
+            {% else %}
+            <div class="container">
+                <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+                    <span class="stext-105 cl3">
+                        AUCUN PRODUIT TROUVE
+                    </span>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <div class="container">
+            <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+                <span class="stext-105 cl3"><br><br><br>
+                </span>
+            </div>
+        </div>
+
+        {% if list_drone_size > 0 %}
+        <!-- Pagination -->
+        <div class="block2-txt flex-w flex-t p-t-14">
+            <div class="container text-center animate-box">
+                <span class="fa fa-bookmark">
+                    Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}
+                </span>
+
+                <nav aria-label="Page navigation example" class="col-sm text-center">
+
+                    <ul class="pagination justify-content-center" style="background-color:#fff">
+
+                        {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1" tabindex="-1" aria-disabled="true">Début</a>
+                        </li>
+                        {% if precedent_num1 > 0 %}
+                        <li class="page-item ">
+                            <a class="page-link" href="?page={{ precedent_num1}}" tabindex="-1" aria-disabled="true">{{ precedent_num1}}</a>
+                        </li>
+                        {% endif %}
+                        {% if precedent_num2 > 0 %}
+                        <li class="page-item ">
+                            <a class="page-link" href="?page={{ precedent_num2}}" tabindex="-1" aria-disabled="true">{{ precedent_num2}}</a>
+                        </li>
+                        {% endif %}
+                        {% if precedent_num3 > 0 %}
+                        <li class="page-item ">
+                            <a class="page-link" href="?page={{ precedent_num3}}" tabindex="-1" aria-disabled="true">{{ precedent_num3}}</a>
+                        </li>
+                        {% endif %}
+                        {% else %}
+
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1" tabindex="-1" aria-disabled="true">Début</a>
+                        </li>
+                        {% endif %}
+
+
+
+                        <li class="page-item active">
+                            <a class="page-link" href="?page={{ page_obj.number }}" tabindex="-1" aria-disabled="true">{{ page_obj.number }}</a>
+                        </li>
+
+
+                        {% if page_obj.has_next %}
+
+                        {% if suivant_num1 <= page_total %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ suivant_num1}}" tabindex="-1" aria-disabled="true">{{ suivant_num1}}</a>
+                        </li>
+                        {% endif %}
+
+                        {% if suivant_num2 <= page_total %}
+                        <li class="page-item ">
+                            <a class="page-link" href="?page={{ suivant_num2}}" tabindex="-1" aria-disabled="true">{{ suivant_num2}}</a>
+                        </li>
+                        {% endif %}
+
+                        {% if suivant_num3 <= page_total %}
+                        <li class="page-item ">
+                            <a class="page-link" href="?page={{ suivant_num3}}" tabindex="-1" aria-disabled="true">{{ suivant_num3}}</a>
+                        </li>
+                        {% endif %}
+
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" tabindex="-1" aria-disabled="true">Fin</a>
+                        </li>
+                        {% else %}
+
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" tabindex="-1" aria-disabled="true">Fin</a>
+                        </li>
+
+                        {% endif %}
+
+                    </ul>
+
+                </nav>
+            </div>
+        </div>
+
+        {% endif %}
+
+
+
+    </div>
+</div>
+
+
+{% endblock %}

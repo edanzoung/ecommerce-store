@@ -1,0 +1,551 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+    /*#############################################################*/
+    /*#############################################################*/
+    /*#############################################################*/
+
+    /* Hide Radio button */
+    .rate>input {
+        display: none;
+    }
+
+    .rate {
+        display: inline-block;
+        ;
+        border: 0;
+    }
+
+    .rate>label {
+        float: right;
+    }
+
+    /* Showing the stars */
+    .rate>label:before {
+        display: inline-block;
+        font-size: 1.1rem;
+        font-family: FontAwesome;
+        content: "\f005";
+        margin: 0;
+        padding: 0.3rem .2rem;
+        cursor: pointer;
+    }
+
+    /* Half star */
+    .rate .half:before {
+        content: "\f089";
+        position: absolute;
+        padding-right: 0;
+    }
+
+    /* Click and hover */
+    input:checked~label,
+    label:hover~label {
+        color: crimson;
+    }
+
+    /* hover hightlight */
+    input:checked+label:hover,
+    input:checked~label:hover,
+    input:checked~label:hover~label,
+    label:hover~input:checked~label {
+        color: crimson;
+    }
+
+    .rating-star i {
+        color: crimson !important;
+    }
+
+    ul.thumb {
+        margin: 0 auto;
+        padding: 0;
+        float: left;
+    }
+
+    ul.thumb li {
+        list-style: none;
+        margin: 10px;
+    }
+
+    ul.thumb li img {
+        width: 80px;
+        height: 80px;
+        border: 1px solid #000;
+    }
+
+    /*#############################################################*/
+    /*#############################################################*/
+    /*#############################################################*/
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+
+<!-- breadcrumb -->
+<div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+    </div>
+</div>
+
+<!-- Product Detail -->
+<section id="add_cart-content" class="sec-product-detail bg0 p-t-65 p-b-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+            </div>
+            <div class="col-lg-6">
+                {% include 'includes/alert.html' %}
+            </div>
+            <div class="col-lg-3">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-lg-7 p-b-30">
+                <div class="p-l-25 p-r-30 p-lr-0-lg">
+                    <div class="wrap-slick3 flex-sb flex-w">
+                        <div class="wrap-slick3-dots"></div>
+                        <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+
+                        <div class="slick3 gallery-lb">
+                            {% if drone.image1_drone %}
+                            <div class="item-slick3" data-thumb="/{{ drone.image1_drone }}">
+                                <div class="wrap-pic-w pos-relative">
+                                    <img src="/{{ drone.image1_drone }}" alt="IMG-PRODUCT">
+
+                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/{{ drone.image1_drone }}">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            {% if drone.image2_drone %}
+                            <div class="item-slick3" data-thumb="/{{ drone.image2_drone }}">
+                                <div class="wrap-pic-w pos-relative">
+                                    <img src="/{{ drone.image2_drone }}" alt="IMG-PRODUCT">
+
+                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/{{ drone.image2_drone }}">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            {% if drone.image3_drone %}
+                            <div class="item-slick3" data-thumb="/{{ drone.image3_drone }}">
+                                <div class="wrap-pic-w pos-relative">
+                                    <img src="/{{ drone.image3_drone }}" alt="IMG-PRODUCT">
+
+                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/{{ drone.image3_drone }}">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            {% if drone.image4_drone %}
+                            <div class="item-slick3" data-thumb="/{{ drone.image4_drone }}">
+                                <div class="wrap-pic-w pos-relative">
+                                    <img src="/{{ drone.image4_drone }}" alt="IMG-PRODUCT">
+
+                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/{{ drone.image4_drone }}">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            {% if drone.image5_drone %}
+                            <div class="item-slick3" data-thumb="/{{ drone.image5_drone }}">
+                                <div class="wrap-pic-w pos-relative">
+                                    <img src="/{{ drone.image5_drone }}" alt="IMG-PRODUCT">
+
+                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/{{ drone.image5_drone }}">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-6 col-lg-5 p-b-30">
+                <div class="p-r-50 p-t-5 p-lr-0-lg">
+
+                    <h4 class="js-cart-name mtext-105 cl2 p-b-14">
+                        {{ drone.marque_drone }} {{ drone.modele_drone }}
+                    </h4>
+
+                    <div class="rating-star">
+                        <span>
+                            <i class="fa fa-star{% if drone.averageReview < 0.5 %}-o{% elif drone.averageReview >= 0.5 and drone.averageReview < 1 %}-half-o {% endif %}" aria-hidden="true"></i>
+                            <i class="fa fa-star{% if drone.averageReview < 1.5 %}-o{% elif drone.averageReview >= 1.5 and drone.averageReview < 2 %}-half-o {% endif %}" aria-hidden="true"></i>
+                            <i class="fa fa-star{% if drone.averageReview < 2.5 %}-o{% elif drone.averageReview >= 2.5 and drone.averageReview < 3 %}-half-o {% endif %}" aria-hidden="true"></i>
+                            <i class="fa fa-star{% if drone.averageReview < 3.5 %}-o{% elif drone.averageReview >= 3.5 and drone.averageReview < 4 %}-half-o {% endif %}" aria-hidden="true"></i>
+                            <i class="fa fa-star{% if drone.averageReview < 4.5 %}-o{% elif drone.averageReview >= 4.5 and drone.averageReview < 5 %}-half-o {% endif %}" aria-hidden="true"></i>
+                            <span>&nbsp; {{drone.countReview}} Avis</span>
+                        </span>
+                    </div>
+
+                    <span class="mtext-106 cl2">
+                        {{ drone.prix_drone }} XOF
+                    </span>
+
+                    <!--<p class="stext-102 cl3 p-t-23">
+                        {{ drone.description_drone }}
+                    </p>-->
+
+
+                    <!--  -->
+                    <div class="p-t-33">
+                        {% if drone.quantite_drone > 0 %}
+                        <form method="POST" action="{% url 'add_cart' drone.id %}">
+                            {% csrf_token %}
+
+                            <div class="container">
+                                <div class="row text-center">
+
+                                    <div class="col-lg-6">
+                                        <h5 class="size-203 flex-c-m respon6">
+                                            Offre
+                                        </h5>
+                                        <select id="offre-option" class="form-control" name="offre" required>
+                                            <option value="" disabled selected>Choisir une option</option>
+                                            {% for i in drone.variation_set.offers %}
+                                            <option value="{{ i.variation_value | capfirst }}">{{ i.variation_value | capfirst }}</option>
+                                            {% endfor %}
+
+                                        </select>
+                                        <div class="dropDownSelect2"></div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <h5 class="size-203 flex-c-m respon6">
+                                            Couleur
+                                        </h5>
+
+                                        <select id="couleur-option" class="form-control" name="couleur" required>
+                                            <option value="" disabled selected>Choisir une option</option>
+                                            {% for i in drone.variation_set.colors %}
+                                            <option value="{{ i.variation_value | capfirst }}">{{ i.variation_value | capfirst }}</option>
+                                            {% endfor %}
+
+                                        </select>
+                                        <div class="dropDownSelect2"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- breadcrumb -->
+                            <div class="container">
+                                <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+                                </div>
+                            </div>
+
+                            <div class="container ">
+                                <div class="col-lg-12 text-center">
+
+                                    <button type="submit" class="btn btn-success btn-lg ">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        Ajouter au panier
+                                    </button>
+
+                                </div>
+
+                            </div>
+                        </form>
+                        <!-- breadcrumb -->
+                        <div class="container">
+                            <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+                            </div>
+                        </div>
+                        <div class="container ">
+                            <div class="col-lg-12 text-center">
+
+                                <a href="javascript:window.history.go(-1)" class="btn btn-dark btn-lg ">
+                                    Retour
+                                </a>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            {% else %}
+
+            <div class="container">
+                <div class="row text-center">
+
+                    <div class="col-lg-6">
+                        <span class="flex-c-m stext-101 cl0 size-101 bg4 bor1" style="color: #f00">
+                            HORS STOCK
+                        </span>
+                    </div>
+
+                    <div class="col-lg-3 ">
+                        <br>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <a href="javascript:window.history.go(-1)" class="btn btn-dark btn-lg ">
+                            Retour
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<div class="container card ">
+    <!-- Tab01 -->
+    <div class="tab01">
+
+        <div class="card-header ">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+
+                <li class="nav-item p-b-10">
+                    <a class="nav-link active" data-toggle="tab" href="#reviews" role="tab">Avis des clients</a>
+                </li>
+
+                <li class="nav-item p-b-10">
+                    <a class="nav-link " data-toggle="tab" href="#description" role="tab">Description</a>
+                </li>
+
+                <li class="nav-item p-b-10">
+                    <a class="nav-link" data-toggle="tab" href="#information" role="tab">Autres Informations</a>
+                </li>
+
+
+            </ul>
+        </div>
+
+        <!-- Tab panes -->
+        <div class="tab-content p-t-43">
+            <!-- - -->
+            <div class="tab-pane fade " id="description" role="tabpanel">
+                <div class="how-pos2 p-lr-15-md">
+                    <p class="stext-102 cl6">
+                        {{drone.description_drone}}
+                    </p>
+                </div>
+            </div>
+
+            <!-- - -->
+            <div class="tab-pane fade" id="information" role="tabpanel">
+                <div class="row">
+                    <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
+                        <ul class="p-lr-28 p-lr-15-sm">
+                            <li class="flex-w flex-t p-b-7">
+                                <span class="stext-102 cl3 size-205">
+                                    Portée
+                                </span>
+
+                                <span class="stext-102 cl6 size-206">
+                                    {{drone.distance_drone}} km
+                                </span>
+                            </li>
+
+                            <li class="flex-w flex-t p-b-7">
+                                <span class="stext-102 cl3 size-205">
+                                    Vitesse
+                                </span>
+
+                                <span class="stext-102 cl6 size-206">
+                                    {{drone.vitesse_drone}} km/h
+                                </span>
+                            </li>
+
+                            <li class="flex-w flex-t p-b-7">
+                                <span class="stext-102 cl3 size-205">
+                                    Autonomie
+                                </span>
+
+                                <span class="stext-102 cl6 size-206">
+                                    {{drone.autonomie_drone}} Minutes
+                                </span>
+                            </li>
+
+                            <li class="flex-w flex-t p-b-7">
+                                <span class="stext-102 cl3 size-205">
+                                    Poids
+                                </span>
+
+                                <span class="stext-102 cl6 size-206">
+                                    {{drone.poids_drone}} Grammes
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- - -->
+            <div class="tab-pane fade show active" id="reviews" role="tabpanel">
+                <div class="row">
+
+                    <aside class="col-lg-6">
+                        <!-- Add review -->
+                        <form action="{% url 'submit_review' drone.id %}" method="POST">
+                            {% csrf_token %}
+                            <h5 class="mtext-108 cl2 p-b-7">
+                                Ajouter un Avis
+                            </h5>
+
+
+
+                            <div class="flex-w flex-m p-t-50 p-b-23">
+                                <span class="stext-102 cl3 m-r-16">
+                                    Combien vous notez ce produit ?
+                                </span>
+
+                                <div class="rate">
+                                    <input type="radio" name="rating" id="rating10" value="5" required /><label for="rating10" title="5"></label>
+                                    <input type="radio" name="rating" id="rating9" value="4.5" required /><label for="rating9" title="4.5" class="half"></label>
+                                    <input type="radio" name="rating" id="rating8" value="4" required /><label for="rating8" title="4"></label>
+                                    <input type="radio" name="rating" id="rating7" value="3.5" required /><label for="rating7" title="3.5" class="half"></label>
+                                    <input type="radio" name="rating" id="rating6" value="3" required /><label for="rating6" title="3"></label>
+                                    <input type="radio" name="rating" id="rating5" value="2.5" required /><label for="rating5" title="2.5" class="half"></label>
+                                    <input type="radio" name="rating" id="rating4" value="2" required /><label for="rating4" title="2"></label>
+                                    <input type="radio" name="rating" id="rating3" value="1.5" required /><label for="rating3" title="1.5" class="half"></label>
+                                    <input type="radio" name="rating" id="rating2" value="1" required /><label for="rating2" title="1"></label>
+                                    <input type="radio" name="rating" id="rating1" value="0.5" required /><label for="rating1" title="0.5" class="half"></label>
+                                </div>
+
+                            </div>
+
+                            <div class="row p-b-25">
+
+                                <div class="col-sm-6 p-b-5">
+                                    <label class=" stext-102 cl3" for="name">Titre Avis</label>
+                                    <input class="title-review size-111 bor8 stext-102 cl2 p-lr-20 form-control" type="text" name="subject" value="{{drone.marque_drone}} {{drone.modele_drone}}" required>
+                                </div>
+
+                                <div class="col-12 p-b-5">
+                                    <label class="stext-102 cl3" for="review">Votre Avis</label>
+                                    <textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10 form-control" rows="4" name="review" required></textarea>
+                                </div>
+
+
+                            </div>
+
+                            <!-- {% if user.is_authenticated %}
+							{% if orderproduct %}
+								<input type="submit" value="Submit Review" class="btn btn-primary">
+							{% else %}
+								<p>You must purchase this product to post a review.</p>
+							{% endif %}
+						{% else %}
+						<p>You must be logged in to post a review. <span><a href="{% url 'login' %}">Login now</a></span></p>
+						{% endif %} -->
+
+
+
+                            <button type="submit" class="js-addreview flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
+                                Soumettre
+                            </button>
+
+                            <div class="alert alert-danger" role="alert" style="margin-top:10px;">
+                                2-Factor Review Submission is disabled for demo purpose.
+                            </div>
+
+                        </form>
+                    </aside>
+
+                    <aside class="col-lg-6">
+
+                        <!-- Review -->
+                        <h5 class="mtext-108 cl2 p-b-7"> AVIS DES CLIENTS </h5>
+                        <hr>
+                        {% if drone.countReview > 0 %}
+                        {% for review in reviews %}
+
+                        <div class="flex-w flex-t p-b-68">
+                            <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+                                <img src="{{userprofile.profile_picture.url}}" alt="AVATAR">
+                            </div>
+
+                            <div class="size-207">
+                                <div class="flex-w flex-sb-m p-b-17">
+                                    <div class="container">
+                                        <hr>
+                                        <span class="mtext-107 cl2 p-r-20">
+                                            {{review.user.first_name}} {{review.user.last_name}}
+                                        </span><br>
+
+                                        <span class="fs-18 cl11 rating-star">
+                                            <i class="fa fa-star{% if review.rating == 0.5 %}-half-o{% elif review.rating < 1 %}-o {% endif %}" aria-hidden="true"></i>
+                                            <i class="fa fa-star{% if review.rating == 1.5 %}-half-o{% elif review.rating < 2 %}-o {% endif %}" aria-hidden="true"></i>
+                                            <i class="fa fa-star{% if review.rating == 2.5 %}-half-o{% elif review.rating < 3 %}-o {% endif %}" aria-hidden="true"></i>
+                                            <i class="fa fa-star{% if review.rating == 3.5 %}-half-o{% elif review.rating < 4 %}-o {% endif %}" aria-hidden="true"></i>
+                                            <i class="fa fa-star{% if review.rating == 4.5 %}-half-o{% elif review.rating < 5 %}-o {% endif %}" aria-hidden="true"></i>
+                                        </span><br>
+
+                                        <h6>{{review.subject}}</h6>
+                                        <br>
+
+                                        <p class="stext-100 cl6"> {{review.review}} </p>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+
+                        {% else %}
+
+                        <div class="container stext-101 cl6 text-center"> AUCUN avis trouvé </div>
+
+                        {% endif %}
+                    </aside>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+    function addfunc() {
+        var option1 = document.getElementById('offre-option').value;
+        var option2 = document.getElementById('couleur-option').value;
+        if (option1 != "" && option2 != "") {
+
+            Swal.fire("{{drone.marque_drone}} {{drone.modele_drone}}",
+                "est ajouté au panier !",
+                "success",
+            );
+        }
+    }
+
+</script>
+
+{% endblock %}

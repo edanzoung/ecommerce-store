@@ -1,0 +1,109 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+<!-- breadcrumb -->
+<div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+    </div>
+</div>
+<!-- breadcrumb -->
+<div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+    </div>
+</div>
+
+<div class="container bg-dark">
+    <div class="login-wrap bg-dark">
+        <div class="card bg-light text-center">
+            <h2> CONNEXION</h2>
+        </div>
+        <div class="login-content">
+
+            {% if request.GET.command == 'verification' %}
+
+            <div class="container mx-auto alert alert-info" role="alert" style="max-width: 1024px;margin-top: 100px">
+
+                Merci d'avoir effectué une inscription avec nous. Un email a été
+                envoyé à votre adresse email [{{request.GET.email}}]. Veuillez véifier s'il vous plaît
+                <br><br>
+
+                <div class="register-link">
+                    <p>
+                        Déjà activé ?
+                        <a href="{% url 'login' %}">
+                            <span class="flex-c-m stext-101 cl1 size-18  hov-btn2 p-lr-5 trans-04 pointer">
+                                Se connecter
+                            </span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            {% else %}
+
+            <div class="login-form">
+                {% include 'includes/alert.html' %}
+                <form action="{% url 'login' %}" method="POST">
+                    {% csrf_token %}
+
+                    <div class="container">
+                        <div class="form-group col-lg-12">
+                            <label>Adresse Email</label>
+                            <input class="form-control " type="email" name="email" placeholder="">
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <label>Mot De Passe</label>
+                            <input class="form-control" type="password" name="password" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="login-checkbox">
+                        <label>
+                            <a href="{% url 'forget_pass' %}">
+                                <span class="flex-c-m stext-101 cl1 size-18  hov-btn2 p-lr-5 trans-04 pointer">
+                                    Mot De Passe Oublié ?
+                                </span>
+                            </a>
+                        </label>
+                    </div>
+
+                    <div class="social-button col-lg-12">
+                        <button type="submit" class="au-btn au-btn--block au-btn--green m-b-20 text-center">Se Connecter</button>
+                    </div>
+
+                </form>
+                <div class="register-link">
+                    <p>
+                        Pas Encore De Compte ?
+                        <a href="{% url 'register' %}">
+                            <span class="flex-c-m stext-101 cl1 size-18  hov-btn2 p-lr-5 trans-04 pointer">
+                                Créer un compte
+                            </span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            {% endif %}
+
+
+        </div>
+    </div>
+
+    <!-- breadcrumb -->
+    <div class="container">
+        <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+        </div>
+    </div>
+    <!-- breadcrumb -->
+    <div class="container">
+        <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endblock %}

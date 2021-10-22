@@ -9,7 +9,7 @@ class Category(models.Model):
     category_name = models.CharField(max_length=50,unique=True)
     slug = models.SlugField(max_length=200,unique=True)
     description = models.TextField(max_length=200,blank=True)
-    cat_image = models.ImageField(storage=custom_store,upload_to='static/images/categories/',blank=True)
+    cat_image = models.ImageField(storage=custom_store,upload_to='media/categories/',blank=True)
     
     class Meta:
         verbose_name="Category"

@@ -8,7 +8,7 @@ from accounts.models import UserProfile,Account
 def create_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance,
-                                   profile_picture='profile/avatar.png'
+                                   profile_picture='media/profile/avatar.png'
                                   )
 
 

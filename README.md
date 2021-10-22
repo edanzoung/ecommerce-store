@@ -22,7 +22,7 @@ User Profile dashboard
 
 And more.
 
-Django version used 3.2.3
+Django version used 3.2.8
 
 
 

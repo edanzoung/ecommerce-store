@@ -75,11 +75,11 @@ class Product(models.Model):
     date_creation = models.DateTimeField(auto_now_add=True)
     date_modification = models.DateTimeField(auto_now=True)
     
-    image1_drone = models.ImageField(storage=custom_store,upload_to='static/images/drones/', max_length=255)
-    image2_drone = models.ImageField(storage=custom_store,upload_to='static/images/drones/', max_length=255)
-    image3_drone = models.ImageField(storage=custom_store,upload_to='static/images/drones/', max_length=255)
-    image4_drone = models.ImageField(storage=custom_store,upload_to='static/images/drones/', max_length=255)
-    image5_drone = models.ImageField(storage=custom_store,upload_to='static/images/drones/', max_length=255)
+    image1_drone = models.ImageField(storage=upload_to='drones/', max_length=255)
+    image2_drone = models.ImageField(storage=upload_to='drones/', max_length=255)
+    image3_drone = models.ImageField(storage=upload_to='drones/', max_length=255)
+    image4_drone = models.ImageField(storage=upload_to='drones/', max_length=255)
+    image5_drone = models.ImageField(storage=upload_to='drones/', max_length=255)
        
     
     class Meta:
